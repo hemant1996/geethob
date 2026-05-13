@@ -3,13 +3,14 @@ import { Command } from "commander";
 import { runStory } from "./commands/story.ts";
 import { runDigest } from "./commands/digest.ts";
 import { runConfigure } from "./commands/configure.ts";
+import { runSkillInstall } from "./commands/skill.ts";
 
 const program = new Command();
 
 program
   .name("geethob")
   .description("Turn git history into prose narrative. Open-source CLI + AI-harness skill.")
-  .version("0.1.0");
+  .version("0.1.2");
 
 program
   .command("story")
@@ -58,6 +59,17 @@ program
   .description("Write an Anthropic API key to ~/.config/geethob/config.toml.")
   .action(async () => {
     const code = await runConfigure();
+    process.exit(code);
+  });
+
+const skill = program.command("skill").description("Manage the geethob AI-harness skill.");
+skill
+  .command("install")
+  .description("Install the geethob skill into a local AI harness (Claude Code by default).")
+  .option("--target <name>", "Harness to install into: claude-code (default).", "claude-code")
+  .option("--force", "Overwrite an existing skill file.", false)
+  .action(async (opts: { target?: "claude-code"; force?: boolean }) => {
+    const code = await runSkillInstall({ target: opts.target, force: opts.force });
     process.exit(code);
   });
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.2
+
+- New `geethob skill install` subcommand wires the bundled skill into Claude Code in one step. The full install is now `npm install -g geethob && geethob skill install` — no GitHub SSH key required (unlike the `/plugin install` path on current Claude Code versions).
+- Renamed the bundled skill from `narrate` to `geethob` so the package name and the skill name match. Invocation slash form is now `/geethob:geethob` (or the agent auto-invokes via the Skill tool).
+- Dropped the legacy `skill/` directory; `skills/geethob/SKILL.md` is the single source of truth.
+- Fixed the hardcoded `0.1.0` version string in `--version` output.
+
 ## v0.1.1
 
 - Slim the npm package from ~70 MB to ~700 KB by excluding the compiled Bun binary (`dist/geethob`) from the published tarball. The binary still ships via GitHub Releases for the single-binary install path; npm users only need the JS bundle.

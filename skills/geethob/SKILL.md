@@ -1,6 +1,6 @@
 ---
 name: geethob
-description: Turn git history into prose narrative. Use when the user asks "what changed in this repo," "summarize these commits," "narrate the history of <feature>," "what did <person> ship last week," or any "tell me the story of …" question against a git repository or a GitHub user. Two modes — `story` (history of a repo/path) and `digest` (a developer's recent activity). Output is prose, not bullet lists.
+description: Turn git history into prose narrative via the geethob CLI. Use when the user asks "what changed in this repo," "summarize these commits," "narrate the history of <feature>," "what did <person> ship last week," or any "tell me the story of …" question against a git repository or a GitHub user. Two modes — `story` (history of a repo/path) and `digest` (a developer's recent activity). Output is prose, not bullet lists.
 ---
 
 # geethob
@@ -83,3 +83,4 @@ Writes `~/.config/geethob/config.toml` with an Anthropic API key. Skip if `ANTHR
 - Output is **prose**, not structured data. Don't post-process it into bullet lists.
 - For long histories, geethob truncates to the most recent N commits and prints a warning. If the user needs older history, they should pass `--since <ref>` or raise `--max-commits`.
 - geethob never sees the full diff — only commit messages + diffstats. This keeps narratives at the story grain. If the user needs line-level analysis, read the diff yourself.
+- The `geethob` binary must already be on `$PATH`. If it's not, suggest the user install it via `npm install -g geethob` or the single-binary download from https://github.com/hemant1996/geethob/releases.

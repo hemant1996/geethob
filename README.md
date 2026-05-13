@@ -17,26 +17,40 @@ Local-only. Bring your own model key. No server. Same binary works as a CLI for 
 
 ## Install
 
-### Claude Code
+### Claude Code (recommended — works everywhere)
+
+```bash
+npm install -g geethob && geethob skill install
+```
+
+Two things happen: the `geethob` binary lands on your `$PATH`, and the bundled skill is dropped into `~/.claude/skills/geethob/`. Restart Claude Code (or reload skills) and ask a story-grained question about any repo.
+
+Requires Node ≥20 or Bun ≥1.1. If you don't have either, use the [single-binary install](#single-binary-no-runtime-needed) below.
+
+### Claude Code — plugin marketplace (alpha)
 
 ```
 /plugin marketplace add hemant1996/geethob
 /plugin install geethob@hemant1996
 ```
 
-The plugin bundles the `narrate` skill. Claude Code's Skill tool will invoke it automatically when you ask story-grained questions about a repo; you can also call it explicitly with `/geethob:narrate`.
+This is the standard Claude Code plugin install pattern, but current Claude Code versions clone via SSH on the install step. If you have a GitHub SSH key configured, it works. If you don't, either use the npm path above or run this once to tell git to use HTTPS for GitHub:
 
-### npm (CLI + every other harness)
+```bash
+git config --global url."https://github.com/".insteadOf "git@github.com:"
+```
+
+### Cursor / Codex / Hermes / OpenClaw / plain terminal
 
 ```bash
 npm install -g geethob
 ```
 
-Requires Node ≥20 or Bun ≥1.1. After install, `geethob` is on your `$PATH` and any harness that can run shell tools (Cursor, Codex, Hermes, OpenClaw, plain terminal) can use it.
+After install, `geethob` is on `$PATH` for any harness with shell-tool access. To wire the skill into a specific harness, copy [`skills/geethob/SKILL.md`](./skills/geethob/SKILL.md) into that harness's skills directory. PRs welcome with verified one-liners for harnesses you've tested.
 
 ### Single-binary (no runtime needed)
 
-Download from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop it on your `$PATH`, `chmod +x`:
+Download from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop on your `$PATH`, `chmod +x`:
 
 ```bash
 # macOS arm64
@@ -49,9 +63,7 @@ curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-d
 curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob && chmod +x /usr/local/bin/geethob
 ```
 
-### Hermes / OpenClaw / Cursor / Codex / MCP host
-
-Run `npm install -g geethob` first, then drop the skill into your harness's skills directory. For Claude Code, the plugin install above does this for you. For others, copy `skills/narrate/SKILL.md` to your harness's skills path; the binary is already on `$PATH`. PRs welcome with one-line install snippets for any harness you've tested — see [`skills/narrate/SKILL.md`](./skills/narrate/SKILL.md).
+After installing the binary, run `geethob skill install` to wire it into Claude Code.
 
 `geethob serve` (MCP server mode) is on the v0.2 roadmap.
 
