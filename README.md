@@ -15,19 +15,19 @@ Local-only. Bring your own model key. No server. Same binary works as a CLI for 
 
 ### Single-binary (no runtime needed)
 
-Download the binary for your platform from [the latest release](https://github.com/hemantbangar/geethob/releases/latest), drop it on your `$PATH`, and `chmod +x`:
+Download the binary for your platform from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop it on your `$PATH`, and `chmod +x`:
 
 ```bash
 # macOS arm64
-curl -L https://github.com/hemantbangar/geethob/releases/latest/download/geethob-darwin-arm64 -o /usr/local/bin/geethob
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-arm64 -o /usr/local/bin/geethob
 chmod +x /usr/local/bin/geethob
 
 # macOS x64
-curl -L https://github.com/hemantbangar/geethob/releases/latest/download/geethob-darwin-x64 -o /usr/local/bin/geethob
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-x64 -o /usr/local/bin/geethob
 chmod +x /usr/local/bin/geethob
 
 # Linux x64
-curl -L https://github.com/hemantbangar/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob
 chmod +x /usr/local/bin/geethob
 ```
 
@@ -107,7 +107,7 @@ Manual until v0.2 ships adapters. Each harness has a skills directory; copy `ski
 ## Build from source
 
 ```bash
-git clone https://github.com/hemantbangar/geethob && cd geethob
+git clone https://github.com/hemant1996/geethob && cd geethob
 bun install
 bun run dev story .
 ```

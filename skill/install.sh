@@ -7,7 +7,7 @@ TARGET="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/geethob"
 
 if ! command -v geethob >/dev/null 2>&1; then
   echo "geethob binary not found on \$PATH." >&2
-  echo "Install it first (see https://github.com/hemantbangar/geethob#install), then re-run this script." >&2
+  echo "Install it first (see https://github.com/hemant1996/geethob#install), then re-run this script." >&2
   exit 1
 fi
 

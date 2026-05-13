@@ -41,7 +41,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hemantbangar/geethob"
+    "url": "https://github.com/hemant1996/geethob"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.0",
