@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.2.0
+
+Architectural pivot. The original v0.1 model — CLI binary that the host harness shells out to — required users to configure a separate Anthropic API key even when calling geethob from inside Claude Code, which already has model access. That's wrong. The real product is the **prompt**; the CLI was just one delivery mechanism.
+
+This release reshapes the skill to run entirely inside the host harness:
+
+- The skill (`skills/geethob/SKILL.md`) is now **self-contained**. It instructs the host agent on (1) how to gather commit data with plain `git log` / `gh api`, and (2) the exact system prompt that produces the prose voice. The host's own model does the narration. No CLI call. No API key. No npm install.
+- One-line install for any harness: `mkdir -p ~/.claude/skills/geethob && curl -fsSL https://raw.githubusercontent.com/hemant1996/geethob/main/skills/geethob/SKILL.md -o ~/.claude/skills/geethob/SKILL.md` (Claude Code; equivalent path for others).
+- The standalone CLI (`npm install -g geethob` + `ANTHROPIC_API_KEY`) is retained for terminal users, CI pipelines, and scripted contexts where no agent is present. It is no longer the primary install path.
+
 ## v0.1.2
 
 - New `geethob skill install` subcommand wires the bundled skill into Claude Code in one step. The full install is now `npm install -g geethob && geethob skill install` — no GitHub SSH key required (unlike the `/plugin install` path on current Claude Code versions).

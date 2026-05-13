@@ -1,6 +1,6 @@
 {
   "name": "geethob",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Turn git history into prose narrative. Open-source CLI + AI-harness skill.",
   "type": "module",
   "module": "src/cli.ts",

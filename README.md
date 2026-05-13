@@ -17,40 +17,36 @@ Local-only. Bring your own model key. No server. Same binary works as a CLI for 
 
 ## Install
 
-### Claude Code (recommended — works everywhere)
+Two paths, by use case.
+
+### Use from an AI harness (Claude Code, Cursor, Hermes, OpenClaw, etc.)
+
+**No API key. No npm. No configuration.** The skill is self-contained — it uses whatever model your harness already has access to. You're not paying twice or configuring twice.
+
+Curl the skill file straight into your harness's skills directory:
 
 ```bash
-npm install -g geethob && geethob skill install
+# Claude Code
+mkdir -p ~/.claude/skills/geethob && curl -fsSL https://raw.githubusercontent.com/hemant1996/geethob/main/skills/geethob/SKILL.md -o ~/.claude/skills/geethob/SKILL.md
 ```
 
-Two things happen: the `geethob` binary lands on your `$PATH`, and the bundled skill is dropped into `~/.claude/skills/geethob/`. Restart Claude Code (or reload skills) and ask a story-grained question about any repo.
+Restart your harness (or reload skills) and ask "what's the story of `<any-repo>`" or "what did `<somebody>` ship this week."
 
-Requires Node ≥20 or Bun ≥1.1. If you don't have either, use the [single-binary install](#single-binary-no-runtime-needed) below.
+For other harnesses, use the same `SKILL.md` from `skills/geethob/SKILL.md` in this repo — drop it into the harness's skills directory.
 
-### Claude Code — plugin marketplace (alpha)
+> **Why this works without a key:** the skill instructs your harness on (1) how to fetch git data with `git log` and `gh api`, and (2) the exact prose-voice system prompt. Your harness runs the prompt with its own model. There is no separate API call. The "AI" in this product is the prompt, not a service.
 
-```
-/plugin marketplace add hemant1996/geethob
-/plugin install geethob@hemant1996
-```
+### Use as a standalone CLI (terminal, CI, scripts)
 
-This is the standard Claude Code plugin install pattern, but current Claude Code versions clone via SSH on the install step. If you have a GitHub SSH key configured, it works. If you don't, either use the npm path above or run this once to tell git to use HTTPS for GitHub:
-
-```bash
-git config --global url."https://github.com/".insteadOf "git@github.com:"
-```
-
-### Cursor / Codex / Hermes / OpenClaw / plain terminal
+This path **does** need an Anthropic API key — because no agent is in the loop, the binary calls Claude itself.
 
 ```bash
 npm install -g geethob
+export ANTHROPIC_API_KEY=sk-ant-...
+geethob story <path-or-owner/repo>
 ```
 
-After install, `geethob` is on `$PATH` for any harness with shell-tool access. To wire the skill into a specific harness, copy [`skills/geethob/SKILL.md`](./skills/geethob/SKILL.md) into that harness's skills directory. PRs welcome with verified one-liners for harnesses you've tested.
-
-### Single-binary (no runtime needed)
-
-Download from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop on your `$PATH`, `chmod +x`:
+Or single-binary, no runtime:
 
 ```bash
 # macOS arm64
@@ -63,9 +59,7 @@ curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-d
 curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob && chmod +x /usr/local/bin/geethob
 ```
 
-After installing the binary, run `geethob skill install` to wire it into Claude Code.
-
-`geethob serve` (MCP server mode) is on the v0.2 roadmap.
+This path is for terminal users, CI pipelines, cron jobs, anything not driven by an agent. If you're using geethob from inside Claude Code or a similar harness, you don't need this — use the skill install above.
 
 ## Configure
 

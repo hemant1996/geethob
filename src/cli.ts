@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name("geethob")
   .description("Turn git history into prose narrative. Open-source CLI + AI-harness skill.")
-  .version("0.1.2");
+  .version("0.2.0");
 
 program
   .command("story")
