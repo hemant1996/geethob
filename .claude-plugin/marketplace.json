@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "geethob",
-      "source": { "source": "github", "repo": "hemant1996/geethob" },
+      "source": { "source": "url", "url": "https://github.com/hemant1996/geethob.git" },
       "description": "Turn git history into prose narrative. CLI + skill, local-only, BYO API key."
     }
   ]
