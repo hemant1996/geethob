@@ -1,6 +1,12 @@
 # Changelog
 
-## v0.1.0 (unreleased)
+## v0.1.1
+
+- Slim the npm package from ~70 MB to ~700 KB by excluding the compiled Bun binary (`dist/geethob`) from the published tarball. The binary still ships via GitHub Releases for the single-binary install path; npm users only need the JS bundle.
+- Ship the Claude Code plugin manifest (`.claude-plugin/`) and the bundled skill (`skills/narrate/`) inside the npm package, so a global install also lights up the plugin path once Claude Code's HTTPS-source bug lands a fix.
+- Include `assets/logo.svg` in the package so README rendering doesn't 404 if viewed from the npm tarball.
+
+## v0.1.0
 
 Initial release.
 
