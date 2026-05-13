@@ -13,37 +13,47 @@ Two modes in v0.1:
 - **`geethob story <repo>`** — narrate the history of a feature, module, or the whole repo.
 - **`geethob digest --since 7d`** — narrate a developer's recent work, formatted to paste cleanly into Slack or a PR comment.
 
-Local-only. Bring your own model key. No server. Same binary works as a CLI for humans and a skill for AI harnesses (Claude Code today; Hermes, OpenClaw, Cursor, MCP servers as adapters land).
+Local-only. Bring your own model key. No server. Same binary works as a CLI for humans and a skill for AI harnesses.
 
 ## Install
 
-### Single-binary (no runtime needed)
+### Claude Code
 
-Download the binary for your platform from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop it on your `$PATH`, and `chmod +x`:
-
-```bash
-# macOS arm64
-curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-arm64 -o /usr/local/bin/geethob
-chmod +x /usr/local/bin/geethob
-
-# macOS x64
-curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-x64 -o /usr/local/bin/geethob
-chmod +x /usr/local/bin/geethob
-
-# Linux x64
-curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob
-chmod +x /usr/local/bin/geethob
+```
+/plugin marketplace add hemant1996/geethob
+/plugin install geethob@hemant1996
 ```
 
-### From npm
+The plugin bundles the `narrate` skill. Claude Code's Skill tool will invoke it automatically when you ask story-grained questions about a repo; you can also call it explicitly with `/geethob:narrate`.
 
-Requires Node ≥20 or Bun ≥1.1.
+### npm (CLI + every other harness)
 
 ```bash
 npm install -g geethob
-# or
-bun add -g geethob
 ```
+
+Requires Node ≥20 or Bun ≥1.1. After install, `geethob` is on your `$PATH` and any harness that can run shell tools (Cursor, Codex, Hermes, OpenClaw, plain terminal) can use it.
+
+### Single-binary (no runtime needed)
+
+Download from [the latest release](https://github.com/hemant1996/geethob/releases/latest), drop it on your `$PATH`, `chmod +x`:
+
+```bash
+# macOS arm64
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-arm64 -o /usr/local/bin/geethob && chmod +x /usr/local/bin/geethob
+
+# macOS x64
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-darwin-x64 -o /usr/local/bin/geethob && chmod +x /usr/local/bin/geethob
+
+# Linux x64
+curl -L https://github.com/hemant1996/geethob/releases/latest/download/geethob-linux-x64 -o /usr/local/bin/geethob && chmod +x /usr/local/bin/geethob
+```
+
+### Hermes / OpenClaw / Cursor / Codex / MCP host
+
+Run `npm install -g geethob` first, then drop the skill into your harness's skills directory. For Claude Code, the plugin install above does this for you. For others, copy `skills/narrate/SKILL.md` to your harness's skills path; the binary is already on `$PATH`. PRs welcome with one-line install snippets for any harness you've tested — see [`skills/narrate/SKILL.md`](./skills/narrate/SKILL.md).
+
+`geethob serve` (MCP server mode) is on the v0.2 roadmap.
 
 ## Configure
 
@@ -76,39 +86,6 @@ geethob digest --author tj --since 14d
 ```
 
 `--max-commits` defaults to 200. If the prompt would overflow Claude Sonnet's context window, geethob sheds the oldest commits to fit and prints a warning.
-
-## Use from your AI harness
-
-geethob ships as a skill that any compatible AI harness can invoke.
-
-### Claude Code — plugin install (recommended)
-
-Inside Claude Code, run:
-
-```
-/plugin marketplace add hemant1996/geethob
-/plugin install geethob@hemant1996
-```
-
-The plugin bundles the `narrate` skill, which Claude Code's Skill tool will invoke automatically whenever you ask story-grained questions about a repo's history. You can also invoke it explicitly via `/geethob:narrate`.
-
-### Claude Code — manual install (legacy)
-
-If you prefer a shell-based install:
-
-```bash
-./skill/install.sh
-```
-
-This drops `SKILL.md` into `~/.claude/skills/geethob/`. Restart Claude Code (or reload skills) and the `geethob` skill is invokable from the Skill tool.
-
-### Hermes / OpenClaw / Cursor
-
-Manual until v0.2 ships adapters. Each harness has a skills directory; copy `skill/SKILL.md` into it and adjust the invocation paths to point at the `geethob` binary on your `$PATH`. PRs welcome with one-line install snippets for any harness you've tested.
-
-### MCP server (v0.2)
-
-`geethob serve` will expose `story` and `digest` as MCP tools so any MCP-compatible host can invoke them without shelling out. Not in v0.1.
 
 ## Exit codes
 
