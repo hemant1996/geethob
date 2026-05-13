@@ -1,13 +1,12 @@
 {
   "name": "hemant1996",
-  "owner": {
-    "name": "Hemant Bangar"
-  },
+  "description": "Hemant Bangar's Claude Code plugins.",
+  "owner": { "name": "Hemant Bangar" },
   "plugins": [
     {
       "name": "geethob",
-      "source": ".",
-      "description": "Turn git history into prose narrative. CLI + AI-harness skill. Local-only, BYO API key."
+      "source": { "source": "github", "repo": "hemant1996/geethob" },
+      "description": "Turn git history into prose narrative. CLI + skill, local-only, BYO API key."
     }
   ]
 }
