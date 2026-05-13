@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="geethob logo: a smiling speech-bubble blob with a tiny git-graph inside">
+  <title>geethob</title>
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB199"/>
+      <stop offset="100%" stop-color="#FF7A7A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- speech-bubble blob body -->
+  <path d="
+    M 56 36
+    C 100 16, 156 16, 200 36
+    C 232 56, 240 96, 232 132
+    C 224 172, 188 200, 144 204
+    L 132 232
+    L 116 204
+    C 72 200, 36 172, 28 132
+    C 20 96, 28 56, 56 36
+    Z"
+    fill="url(#bodyGrad)"
+    stroke="#3D2B3D"
+    stroke-width="6"
+    stroke-linejoin="round"/>
+
+  <!-- left eye (smiling, commit-node shaped) -->
+  <circle cx="96" cy="110" r="10" fill="#FFFAF5"/>
+  <circle cx="98" cy="112" r="5" fill="#3D2B3D"/>
+
+  <!-- right eye -->
+  <circle cx="160" cy="110" r="10" fill="#FFFAF5"/>
+  <circle cx="162" cy="112" r="5" fill="#3D2B3D"/>
+
+  <!-- cheek dots (subtle warmth) -->
+  <circle cx="70" cy="140" r="6" fill="#FF5A5A" opacity="0.35"/>
+  <circle cx="186" cy="140" r="6" fill="#FF5A5A" opacity="0.35"/>
+
+  <!-- happy smile -->
+  <path d="M 100 152 Q 128 174, 156 152"
+        fill="none"
+        stroke="#3D2B3D"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+  <!-- tiny git-graph above the head: three commit nodes connected by a curve -->
+  <path d="M 86 64 Q 128 44, 170 64"
+        fill="none"
+        stroke="#3D2B3D"
+        stroke-width="4"
+        stroke-linecap="round"
+        opacity="0.85"/>
+  <circle cx="86"  cy="64" r="6" fill="#FFFAF5" stroke="#3D2B3D" stroke-width="3"/>
+  <circle cx="128" cy="50" r="6" fill="#FFFAF5" stroke="#3D2B3D" stroke-width="3"/>
+  <circle cx="170" cy="64" r="6" fill="#FFFAF5" stroke="#3D2B3D" stroke-width="3"/>
+</svg>

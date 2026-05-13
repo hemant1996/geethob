@@ -1,6 +1,10 @@
-# geethob
+<p align="center">
+  <img src="assets/logo.svg" alt="geethob logo" width="160" height="160" />
+</p>
 
-Turn git history into prose narrative.
+<h1 align="center">geethob</h1>
+
+<p align="center">Turn git history into prose narrative.</p>
 
 AI now writes code faster than humans can review it. A 2,000-line AI-generated PR is hard to read at the diff grain — but the value is at the *story* grain: what was attempted, what changed mid-flight, what shipped. `geethob` reads a repository and produces prose someone would actually forward.
 
@@ -77,13 +81,26 @@ geethob digest --author tj --since 14d
 
 geethob ships as a skill that any compatible AI harness can invoke.
 
-### Claude Code
+### Claude Code — plugin install (recommended)
+
+Inside Claude Code, run:
+
+```
+/plugin marketplace add hemant1996/geethob
+/plugin install geethob@hemant1996
+```
+
+The plugin bundles the `narrate` skill, which Claude Code's Skill tool will invoke automatically whenever you ask story-grained questions about a repo's history. You can also invoke it explicitly via `/geethob:narrate`.
+
+### Claude Code — manual install (legacy)
+
+If you prefer a shell-based install:
 
 ```bash
 ./skill/install.sh
 ```
 
-This drops `SKILL.md` and a small wrapper into `~/.claude/skills/geethob/`. Restart Claude Code (or reload skills) and the `geethob` skill is invokable from the Skill tool.
+This drops `SKILL.md` into `~/.claude/skills/geethob/`. Restart Claude Code (or reload skills) and the `geethob` skill is invokable from the Skill tool.
 
 ### Hermes / OpenClaw / Cursor
 

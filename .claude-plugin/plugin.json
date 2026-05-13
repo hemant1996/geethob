@@ -1,0 +1,12 @@
+{
+  "name": "geethob",
+  "description": "Turn git history into prose narrative. Use when the user asks 'what changed in this repo,' 'summarize these commits,' 'narrate the history of <feature>,' or 'what did <person> ship last week.' Local-only, BYO API key.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Hemant Bangar"
+  },
+  "homepage": "https://github.com/hemant1996/geethob",
+  "repository": "https://github.com/hemant1996/geethob",
+  "license": "MIT",
+  "keywords": ["git", "github", "narrative", "changelog", "ai", "claude", "skill"]
+}
